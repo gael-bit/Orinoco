@@ -1,5 +1,7 @@
 var orinoco = {
-  dataManager : new DataManager("http://localhost:3000/api/teddies")
+  components : {},
+  dataManager : new DataManager("http://localhost:3000/api/teddies"),
+  page : null
 };
 
 function initPage(page){
