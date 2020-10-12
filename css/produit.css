@@ -59,14 +59,7 @@ nav{
 .panier:hover{
 	background-color: white;
 }
-.champ_produit{
-	background-color: #f3e9f1;
-	margin-left: 20%;
-	margin-right: 20%;
-	margin-bottom: 4%;
-	box-shadow: 0px 0px 18px #BDBDBD;
-	display : flex;
-}
+
 .image_produit{
 	margin-right: 5%;
 }
