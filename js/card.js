@@ -9,6 +9,7 @@ class Card{
 
 
   constructor(props, domTarget){
+   // localStorage.clear();
     this.DOM = document.createElement("card");
     domTarget.appendChild(this.DOM);
     for (const [key, value] of Object.entries(props)) {
@@ -20,18 +21,19 @@ class Card{
   }
 
   render(){
-    this.DOM.innerHTML = this.showDetails ? this.templateDetailed : this.templateResume;
-
+    this.DOM.innerHTML = `<div class="image_produit"><img src='${this.imageUrl}' height ="215"/></div><div>${this.showDetails ? this.templateDetailed : this.templateResume}</div>`
   }
 
   click(){
     this.showDetails = !this.showDetails;
-    if (this.showDetails) new PageProduit(this._id);
+    if (this.showDetails) new pageProduit(this._id);
     this.render();
   }
 
-  get templateResume(){
-    return `<h2>${this.name}</h2><price>${this.showPrice()}</price><button onclick="orinoco.components['${this._id}'].click()">+de detail</button>`
+  get templateResume(){ //que signifie get?
+      console.log(orinoco.components[this._id]);
+    return `<h2>${this.name}</h2><price>${this.showPrice()}</price><button onclick="orinoco.components['${this._id}'].click()">+de detail</button>
+    <p>${this.description}</p>`
   }
 
   showPrice(){
@@ -59,7 +61,7 @@ class Card{
   }
 
   die(){
-    this.DOM.parentNode.removeChild(this.DOM);
+    this.DOM.parentNode.removeChild(this.DOM); // on supprime l'element du parent mais le parent c'est lui même, nan?
     delete(orinoco.components[this._id.trim()]);
   }
 }

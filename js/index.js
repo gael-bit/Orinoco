@@ -9,5 +9,11 @@ function initPage(page){
     case "home" : 
       new Home();
       break;
+  	case "produit" :
+  	  new pageProduit();
+  	  break;
+  	case "panier" :
+  	  new PagePanier();
+  	  break;
   }
 }
