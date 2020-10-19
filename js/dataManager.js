@@ -9,4 +9,13 @@ class DataManager{
     this.products = await data.json();
     callback(this.products);
   }
+
+  setLocalStorage(key,value){
+    if( typeof value === "object") value = JSON.stringify(value);
+    localStorage.setItem(key, value);
+  }
+
+  getLocalStorage(key){
+    return localStorage.getItem(key);
+  }
 }

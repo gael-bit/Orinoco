@@ -24,7 +24,7 @@ class Card{
     this.DOM.innerHTML = `<div class="image_produit"><img src='${this.imageUrl}' height ="215"/></div><div>${this.showDetails ? this.templateDetailed : this.templateResume}</div>`
   }
 
-  click(){
+  openAndClose(){
     this.showDetails = !this.showDetails;
     if (this.showDetails) new pageProduit(this._id);
     this.render();
@@ -32,7 +32,7 @@ class Card{
 
   get templateResume(){ //que signifie get?
       console.log(orinoco.components[this._id]);
-    return `<h2>${this.name}</h2><price>${this.showPrice()}</price><button onclick="orinoco.components['${this._id}'].click()">+de detail</button>
+    return `<h2>${this.name}</h2><price>${this.showPrice()}</price><button onclick="orinoco.components['${this._id}'].openAndClose()">+de detail</button>
     <p>${this.description}</p>`
   }
 
@@ -55,9 +55,17 @@ class Card{
           </select>
         </p>
       </form>
-      <button>Ajouter au panier</button> 
-      <button onclick="orinoco.components['${this._id}'].click()">fermer</button>    
+      <button onclick="orinoco.components['${this._id}'].addToCart()">Ajouter au panier</button> 
+      <button onclick="orinoco.components['${this._id}'].openAndClose()">fermer</button>    
     `;
+  }
+
+  addToCart(){
+    orinoco.panier.add({
+      "name" : this.name,
+      "price" : this.price,
+      "image" : this.imageUrl
+    })
   }
 
   die(){

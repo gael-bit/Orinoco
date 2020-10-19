@@ -1,4 +1,11 @@
 class pageProduit{ //comment la classe produit est capable de lire la fonction die() ?
+  /**
+   * [constructor description]
+   *
+   * @param   {string}  keep  id du produit à afficher
+   *
+   * @constructor
+   */
   constructor(keep){
     if (keep === undefined) {
 
@@ -13,19 +20,22 @@ class pageProduit{ //comment la classe produit est capable de lire la fonction d
     }
 
     else {
-      new LocalStorage(keep);
+      orinoco.dataManager.setLocalStorage("currentProduct", keep);
       for (const [key, value] of Object.entries(orinoco.components)){
         if (key !== keep){
          orinoco.components[key].die();
         }
       }
-    }
-    //console.log(orinoco.components[keep].imageUrl);
-   
+    }   
   }
 
-  //au clic sur le boutton "Ajouter au panier" on ajoute le produit dans le panier
+  /**
+   * au clic sur le boutton "Ajouter au panier" on ajoute le produit dans le panier
+   *
+   * @return  {void}  appel la page panier
+   */
   click(){
+    alert("ùmldùflsdlfsdlf");
     new PagePanier(this.id, this.produit);
   }
 
@@ -45,7 +55,7 @@ class pageProduit{ //comment la classe produit est capable de lire la fonction d
           </select>
         </p>
       </form> 
-      <button class="button-panier" onclick="${this.click()}">Ajouter au panier</button> </div>`   
+      <button class="button-panier" onclick="${this.click}">Ajouter au panier</button> </div>`   
     ;
   }
 }
