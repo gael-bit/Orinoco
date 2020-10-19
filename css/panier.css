@@ -71,16 +71,20 @@ nav{
 	padding-bottom : 10%;
 	color : #000000c4;
 }
-.champ_produit{
+/*.champ_produit{
 	background-color: #f3e9f1;
 	margin-left: 14%;
 	margin-right: 14%;
 	margin-bottom: 2%;
 	box-shadow: 0px 0px 18px #BDBDBD;
 	display : flex;
-}
+}*/
 .image_produit{
 	margin-right: 5%;
+}
+
+.prixTotal{
+	margin-left: 12%;
 }
 
 .button-commande{
