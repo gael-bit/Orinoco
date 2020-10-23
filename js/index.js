@@ -5,7 +5,7 @@ var orinoco = {
 };
 
 function initPage(page){
-  orinoco.panier = new Panier(document.querySelector("header"));
+  orinoco.panier = new Panier(document.querySelector("main"));
   switch(page){
     case "home" : 
       new Home();

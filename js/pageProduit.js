@@ -21,6 +21,7 @@ class pageProduit{ //comment la classe produit est capable de lire la fonction d
 
     else {
       orinoco.dataManager.setLocalStorage("currentProduct", keep);
+      orinoco.dataManager.setLocalStorage('panier',[])
       for (const [key, value] of Object.entries(orinoco.components)){
         if (key !== keep){
          orinoco.components[key].die();

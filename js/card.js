@@ -9,7 +9,7 @@ class Card{
 
 
   constructor(props, domTarget){
-   // localStorage.clear();
+   localStorage.clear();
     this.DOM = document.createElement("card");
     domTarget.appendChild(this.DOM);
     for (const [key, value] of Object.entries(props)) {
@@ -32,8 +32,10 @@ class Card{
 
   get templateResume(){ //que signifie get?
       console.log(orinoco.components[this._id]);
-    return `<h2>${this.name}</h2><price>${this.showPrice()}</price><button onclick="orinoco.components['${this._id}'].openAndClose()">+de detail</button>
-    <p>${this.description}</p>`
+    return `<h2>${this.name}</h2>
+            <price>${this.showPrice()}</price>
+            <button onclick="orinoco.components['${this._id}'].openAndClose()">+de detail</button>
+            <p>${this.description}</p>`
   }
 
   showPrice(){
@@ -48,10 +50,10 @@ class Card{
         <p>
           <label for="couleur"></label>
           <select name = "couleur" id = "couleur">
-            <option value = "red">Red</option>
-            <option value = "blue">Blue</option>
-            <option value = "green">Green</option>
-            <option value = "yellow">Yellow</option>
+            <option value = "red">${this.colors[0]}</option>
+            <option value = "blue">${this.colors[1]}</option>
+            <option value = "green">${this.colors[2]}</option>
+            <option value = "yellow">${this.colors[3]}</option>
           </select>
         </p>
       </form>
@@ -61,6 +63,7 @@ class Card{
   }
 
   addToCart(){
+    orinoco.components[this._id].die();
     orinoco.panier.add({
       "name" : this.name,
       "price" : this.price,
