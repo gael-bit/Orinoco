@@ -31,7 +31,7 @@ class Card{
   }
 
   get templateResume(){ //que signifie get?
-      console.log(orinoco.components[this._id]);
+      // console.log(orinoco.components[this._id]);
     return `<h2>${this.name}</h2>
             <price>${this.showPrice()}</price>
             <button onclick="orinoco.components['${this._id}'].openAndClose()">+de detail</button>
@@ -63,12 +63,13 @@ class Card{
   }
 
   addToCart(){
-    orinoco.components[this._id].die();
     orinoco.panier.add({
       "name" : this.name,
       "price" : this.price,
       "image" : this.imageUrl
-    })
+    });
+    initPage("home");
+    this.die();
   }
 
   die(){

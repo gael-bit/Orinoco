@@ -1,7 +1,7 @@
 class Formulaire{
-	constructor(main){
+	constructor(target){
 		this.formulaire = document.createElement('form');
-		main.append(this.formulaire);
+		target.append(this.formulaire);
 		this.render();
 	}
 
