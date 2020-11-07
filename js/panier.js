@@ -1,4 +1,11 @@
 class Panier{
+   /**
+   * Construit un panier
+   *
+   * @param   {element}  element bar <nav>
+   *
+   * @constructor
+   */
   constructor(DomTarget){
     // localStorage.clear();
      this.DOM = document.createElement("panier");
@@ -11,17 +18,29 @@ class Panier{
      this.DOM.onclick= this.changeView.bind(this);
 
   }
-
+  /**
+   * appel la fonction d'affichage du panier et indique le nombre de produit dans le panier
+   *
+   * @param   {void}  aucun paramettre
+   *
+   * @return  {void} 
+   */
   render(){
     this.DOM.innerHTML = this.resumeTemplate;
     if (this.detailed) this.detailedTemplate();
   }
-
+   /**
+   * affiche tous les produits dans le fanier
+   *
+   * @param   {void}  aucun paramettre
+   *
+   * @return  {void} 
+   */
   detailedTemplate(){
     this.modal = document.createElement("modal");
     this.DOM.appendChild(this.modal);
-    const modalContent = document.createElement("modalContent");
-    this.modal.appendChild(modalContent);
+    this.modalContent = document.createElement("modalContent");
+    this.modal.appendChild(this.modalContent);
     let content = "";
 
     for(let i=0, size=this.content.length; i < size; i++){
@@ -39,35 +58,54 @@ class Panier{
         </div>
       </article>`
     }
-    modalContent.innerHTML = content;
-    new Formulaire(modalContent);
+    this.modalContent.innerHTML = content;
+    orinoco.formulaire = new Formulaire(this.modalContent);
   }
-
+   /**
+   * donne le nombre de produits présent dans le tableau
+   *
+   * @param   {void}  aucun paramettre
+   *
+   * @return  {integer} nombre de produit dans le panier(taille du tableau)
+   */
   get resumeTemplate(){
     return this.content.length;
   }
 
   /**
-   * [add description]
+   * ajoute un produit dans le panier
    *
-   * @param   {object}  product  [product description]
+   * @param   {void}  aucun paramettre
    *
-   * @return  {void}           [return description]
+   * @return  {void} 
    */
   add(product){
     this.content.push(product);
-    // this.detailed = true;
     this.render();
   }
-
+  /**
+   * supprime le produit sélectionné dans le panier
+   *
+   * @param {void} aucun paramettre
+   * 
+   * @return  {void}  
+   */
   remove(id){              
     console.log("---",id)             
-    // this.DOM.parentNode.removeChild(this.DOM);
-    // this.content.splice(0,1);
+    this.modalContent.parentNode.removeChild(this.modalContent);
+    this.content.splice(id,1);
+    this.DOM.innerHTML = this.resumeTemplate;
   }
-
+  /**
+   * affiche le panier
+   *
+   * @param {void} aucun paramettre
+   * 
+   * @return  {void}  
+   */
   changeView(){
-    if (this.content.length === 0) return;
+    if (this.content.length === 0) return;// lorsqu'on clique sur le côté on repasse vers cette fonction. ça t'aidera à trouver 
+    changePage("panier");                //  comment maintenir le modal pour qu'il ne disparaisse pas
     this.detailed = !this.detailed;
     this.render();
   }

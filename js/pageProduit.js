@@ -1,6 +1,6 @@
-class pageProduit{ //comment la classe produit est capable de lire la fonction die() ?
+class pageProduit{ 
   /**
-   * [constructor description]
+   * affiche le produit sélectionné sur sa page corespondante
    *
    * @param   {string}  keep  id du produit à afficher
    *
@@ -13,15 +13,22 @@ class pageProduit{ //comment la classe produit est capable de lire la fonction d
       this.article = document.createElement("card");
       this.main.appendChild(this.article);
 
-      this.id = localStorage.getItem('id');
-      this.produit = JSON.parse(localStorage.getItem('produit')); // creation de du produit
-      this.render();
+      for (const [key, value] of Object.entries(orinoco.components)){
+        orinoco.components[key].die();
+      }
 
+      const produit = JSON.parse(localStorage.getItem("produit"));
+      for (const [key, value] of Object.entries(produit)) {
+        this[key] = value;
+      }
+
+      orinoco.components[this._id.trim()] = this;
+      this.render();
     }
 
     else {
       orinoco.dataManager.setLocalStorage("currentProduct", keep);
-      orinoco.dataManager.setLocalStorage('panier',[])
+      orinoco.dataManager.setLocalStorage('produit',JSON.stringify(orinoco.components[keep]));
       for (const [key, value] of Object.entries(orinoco.components)){
         if (key !== keep){
          orinoco.components[key].die();
@@ -29,34 +36,66 @@ class pageProduit{ //comment la classe produit est capable de lire la fonction d
       }
     }   
   }
-
   /**
-   * au clic sur le boutton "Ajouter au panier" on ajoute le produit dans le panier
+   * convertie le prix en euro
    *
-   * @return  {void}  appel la page panier
+   * @param {void} aucun paramettre
+   * 
+   * @return  {integer} prix réel en euro
    */
-  click(){
-    alert("ùmldùflsdlfsdlf");
-    new PagePanier(this.id, this.produit);
+  showPrice(){
+    return this.price/100;
   }
 
-  // on affiche le contenu du produit
+  /**
+   * affiche les infomations du produit(Nom, Prix, Couleurs) et un bouton permettant d'ajouter au panier
+   *
+   * @param {void} aucun paramettre
+   * 
+   * @return  {void}  
+   */
   render(){
      this.article.innerHTML = 
-     `<div class="image_produit"><img src='${this.produit.image}' height ="215"/></div>
-     <div><h2>${this.produit.name}</h2>
-      <price>${this.produit.price}</price>
+     `<div class="image_produit"><img src='${this.imageUrl}' height ="215"/></div>
+     <div><h2>${this.name}</h2>
+      <price>${this.showPrice()} €</price>
       <form method="post">
         <p>
           <label for="couleur"></label>
           <select name = "couleur" id = "couleur">
-            <option value = "${JSON.parse(this.produit.colors)[0]}">${JSON.parse(this.produit.colors)[0]}</option>
-            <option value = "${JSON.parse(this.produit.colors)[1]}">${JSON.parse(this.produit.colors)[1]}</option>
-            <option value = "${JSON.parse(this.produit.colors)[2]}">${JSON.parse(this.produit.colors)[2]}</option>
+            <option value = "${this.colors[0]}">${this.colors[0]}</option>
+            <option value = "${this.colors[1]}">${this.colors[1]}</option>
+            <option value = "${this.colors[2]}">${this.colors[2]}</option>
           </select>
         </p>
       </form> 
-      <button class="button-panier" onclick="${this.click}">Ajouter au panier</button> </div>`   
+      <button class="button-panier" onclick="orinoco.components['${this._id}'].addToCart()">Ajouter au panier</button> </div>`  
     ;
+    
+  }
+  /**
+   * ajoute le produit au panier
+   *
+   * @param {void} aucun paramettre
+   * 
+   * @return  {void}  
+   */
+  addToCart(){
+    orinoco.panier.add({
+      "name" : this.name,
+      "price" : this.price,
+      "image" : this.imageUrl
+    });
+  }
+  /**
+   * supprime tous les produits present sur la page avant de changer de page
+   *
+   * @param {void} aucun paramettre
+   * 
+   * @return  {void}  
+   */
+  die(){
+    this.article.parentNode.removeChild(this.article); // on supprime l'element du parent mais le parent c'est lui même, nan?
+    delete(orinoco.components[this._id.trim()]);
   }
 }
