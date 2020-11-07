@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+	<head>
 		<meta charset="utf-8" />
-		<!--<script src="https://kit.fontawesome.com/c9b787d21b.js" crossorigin="anonymous"></script>-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 		<link rel="stylesheet" href="css/all.css" />
-		<link rel="stylesheet" href="css/commun.css" />
+		<link rel="stylesheet" href="css/commun.css"/>
 		<link rel="stylesheet" href="css/page.css"/>
+
 		<meta name="viewport" content="width=device-width"/>
 		<meta name="description" content="Bienvenue chez Orinoco!! Venez, entrez!!"/>
 		<title>Orinoco</title>
 
-    <!-- <script src ="accueil.js"></script> -->
-    <script src="js/dataManager.js"></script>
-    <script src="js/card.js"></script>
-    <script src="js/home.js"></script>
-    <!-- <script src="js/localStorage.js"></script> -->
-    <script src="js/panier.js"></script>
-    <script src="js/pageProduit.js"></script>
-    <script src="js/formulaire.js"></script>
-    <script src="js/index.js"></script>
-   
-		<!--<script src="./js/jquery-2.1.0.js"></script>-->
+		<script src="js/dataManager.js"></script>
+		<script src="js/card.js"></script>
+		<script src="js/home.js"></script>
+		<script src="js/panier.js"></script>
+		<script src="js/pageProduit.js"></script>
+		<script src="js/formulaire.js"></script>
+		<script src="js/index.js"></script>
+
 	</head>
 
-	<body onload="initPage('home')">
+	<body onload="initPage()">
 		<header>
-			<a href="index.html"><h1>Orinoco</h1></a>
+			<h1  onclick="changePage('home')">Orinoco</h1>
 			<nav>
-				<div class="acceuil" onclick="initPage('home')">Acceuil</div>
-				<div class="produit">Produit</div>
-				<!-- <div class="panier">Panier</div> -->
+				<div class="acceuil" onclick="changePage('home')">Acceuil</div>
+				<div class="produit" onclick="changePage('produit')">Produit</div>
 			</nav>
 		</header>
-		<main>
+		<main id ="main">
 
 		</main>
 	</body>
