@@ -41,6 +41,7 @@ class Panier{
     this.DOM.appendChild(this.modal);
     this.modalContent = document.createElement("modalContent");
     this.modal.appendChild(this.modalContent);
+    this.modalContent.onclick = (event)=>this.preventClick(event);
     let content = "";
 
     for(let i=0, size=this.content.length; i < size; i++){
@@ -108,5 +109,18 @@ class Panier{
     changePage("panier");                //  comment maintenir le modal pour qu'il ne disparaisse pas
     this.detailed = !this.detailed;
     this.render();
+  }
+  
+  
+  /**
+   * empêche de fermer la modale
+   *
+   * @param   {Event}  event  [event description]
+   *
+   * @return  {void}
+   */
+  preventClick(event){
+    event.preventDefault();
+    event.stopPropagation();
   }
 }

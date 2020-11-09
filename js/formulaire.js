@@ -8,7 +8,7 @@ class Formulaire{
    */
 	constructor(target){
 		this.formulaire = document.createElement('form');
-		target.append(this.formulaire);
+    target.append(this.formulaire);
 		this.render();
 	}
 	/**
@@ -82,5 +82,5 @@ class Formulaire{
 		}
 		
 		orinoco.dataManager.sendData(prenom, nom, adresse, ville, mail);
-	}
+  }
 }

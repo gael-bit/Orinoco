@@ -53,19 +53,24 @@ class DataManager{
    */
   sendData(prenom, nom, adresse, ville, mail){
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
 
-    const body = {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    const body = JSON.stringify({
         contact: {
-          firstName: prenom,
-          lastName: nom,
-          address: adresse,
-          city: ville,
-          email: mail
+          "firstName": prenom,
+          "lastName": nom,
+          "address": adresse,
+          "city": ville,
+          "email": mail
         },
         products: ['teddy1']
-    };
+    });
 
     const init = {
       method : 'POST',
@@ -73,7 +78,7 @@ class DataManager{
       body
     };
 
-    fetch("​http://localhost:3000/api/teddies/order", init)
+    fetch(this.src+"/order", init)
     .then((response) =>{
       return response.json;
     })
