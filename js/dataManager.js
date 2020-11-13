@@ -44,14 +44,20 @@ class DataManager{
     if( typeof value === "object") return JSON.parse(localStorage.getItem(key));
     return localStorage.getItem(key);
   }
-   /**
+
+  /**
    * envoie les données au serveur
    *
-   * @param {string, string, string,string, string} 
-   * 
+   * @param   {String}  prenom    [prenom description]
+   * @param   {String}  nom       [nom description]
+   * @param   {String}  adresse   [adresse description]
+   * @param   {String}  ville     [ville description]
+   * @param   {String}  mail      [mail description]
+   * @param   {Array}  products   [products description]
+   *
    * @return  {objet} reponse du serveur sous forme d'id
    */
-  sendData(prenom, nom, adresse, ville, mail){
+  sendData(prenom, nom, adresse, ville, mail,products){
 
     // const headers = new Headers();
     // headers.append('Content-Type', 'application/json');
@@ -62,14 +68,14 @@ class DataManager{
     };
 
     const body = JSON.stringify({
-        contact: {
+        "contact": {
           "firstName": prenom,
           "lastName": nom,
           "address": adresse,
           "city": ville,
           "email": mail
         },
-        products: ['teddy1']
+        "products": products
     });
 
     const init = {
@@ -80,10 +86,10 @@ class DataManager{
 
     fetch(this.src+"/order", init)
     .then((response) =>{
-      return response.json;
+      return response.json();
     })
     .then((text) =>{
-
+      console.log(text)
     })
     .catch((e) =>{
 

@@ -82,9 +82,10 @@ class pageProduit{
    */
   addToCart(){
     orinoco.panier.add({
+      "id"   : this._id,
+      "image": this.imageUrl,
       "name" : this.name,
-      "price" : this.price,
-      "image" : this.imageUrl
+      "price": this.price,
     });
   }
   /**

@@ -50,16 +50,16 @@ class Formulaire{
    * @return  {void} 
    */
 	takeData(){
-		var prenom = document.getElementById('prenom').value;
-		var prenomValid = /[A-Za-zëçéèà]{3,10}/;
-		var nom = document.getElementById('nom').value;
-		var nomValid = /[A-Za-zëçéàè-]{3,15}/;
-		var adresse = document.getElementById('adresse').value;
-		var adresseValid = /[0-9][ ]([Rr]ue|[Bb]oulevard|[Aa]ll[ée]e|[Aa]venue|[Cc]arrefour)[ ][A-Za-zëçéèà -]+/;
-		var ville = document.getElementById('ville').value;
-		var villeValid = /[A-Za-zëçéàè]{3,15}/;
-		var mail = document.getElementById('mail').value;
-		var mailValid = /[A-Za-zëçéèà.]{3,20}[@][A-Za-zëçéèà]{3,20}.[.]com/;
+		const prenom = document.getElementById('prenom').value;
+		const prenomValid = /[A-Za-zëçéèà]{3,10}/;
+		const nom = document.getElementById('nom').value;
+		const nomValid = /[A-Za-zëçéàè-]{3,15}/;
+		const adresse = document.getElementById('adresse').value;
+		const adresseValid = /[0-9][ ]([Rr]ue|[Bb]ouleconstd|[Aa]ll[ée]e|[Aa]venue|[Cc]arrefour)[ ][A-Za-zëçéèà -]+/;
+		const ville = document.getElementById('ville').value;
+		const villeValid = /[A-Za-zëçéàè]{3,15}/;
+		const mail = document.getElementById('mail').value;
+		const mailValid = /[A-Za-zëçéèà.]{3,20}[@][A-Za-zëçéèà]{3,20}.[.]com/;
 		if(prenomValid.test(prenom) == false){ 
 			alert("Remplissez correctement le champ Prenom!!");
 			return;
@@ -79,8 +79,14 @@ class Formulaire{
 		else if(mailValid.test(mail) == false){ 
 			alert("Remplissez correctement le champ Adresse mail!!");
 			return;
-		}
+    }
+    
+    let products = [];
+    const list = orinoco.panier.content;
+    for(let i=list.length-1; i >= 0; i--){
+      products.push(list[i].id);
+    }
 		
-		orinoco.dataManager.sendData(prenom, nom, adresse, ville, mail);
+		orinoco.dataManager.sendData(prenom, nom, adresse, ville, mail, products);
   }
 }
