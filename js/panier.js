@@ -123,4 +123,9 @@ class Panier{
     event.preventDefault();
     event.stopPropagation();
   }
+
+
+  closeModal(){
+    this.modal.parentNode.removeChild(this.modal);
+  }
 }

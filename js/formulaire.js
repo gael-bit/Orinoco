@@ -49,7 +49,7 @@ class Formulaire{
    * 
    * @return  {void} 
    */
-	takeData(){
+	async takeData(){
 		const prenom = document.getElementById('prenom').value;
 		const prenomValid = /[A-Za-zëçéèà]{3,10}/;
 		const nom = document.getElementById('nom').value;
@@ -87,6 +87,9 @@ class Formulaire{
       products.push(list[i].id);
     }
 		
-		orinoco.dataManager.sendData(prenom, nom, adresse, ville, mail, products);
+    const result = await orinoco.dataManager.sendData(prenom, nom, adresse, ville, mail, products);
+    orinoco.panier.closeModal();
+    console.log("--++",result)
+    changePage("confirmation", result);
   }
 }

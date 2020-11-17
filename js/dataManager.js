@@ -89,10 +89,11 @@ class DataManager{
       return response.json();
     })
     .then((text) =>{
-      console.log(text)
+      console.log("---->",text)
+      return text;
     })
     .catch((e) =>{
-
+      console.error("/!\\ "+e);
     });
   }
 }
