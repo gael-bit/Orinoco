@@ -1,12 +1,12 @@
-class DataManager{
-   /**
+class DataManager {
+  /**
    * Gère les données, récuéprère les données du serveur, gère le local storage
    *
    * @param   {string}  src  adresse du serveur
    *
    * @constructor
    */
-  constructor(src){
+  constructor(src) {
     this.src = src;
     this.products = [];
   }
@@ -14,10 +14,10 @@ class DataManager{
    * Récuprère les données du serveur
    *
    * @param {function} envoie les données du serveur sous format json
-   * 
-   * @return  {void} 
+   *
+   * @return  {void}
    */
-  async getData(callback){
+  async getData(callback) {
     const data = await fetch(this.src);
     this.products = await data.json();
     callback(this.products);
@@ -25,23 +25,23 @@ class DataManager{
   /**
    * crée les éléments du local Storage
    *
-   * @param {string, string} 
-   * 
-   * @return  {void} 
+   * @param {string, string}
+   *
+   * @return  {void}
    */
-  setLocalStorage(key,value){
-    if( typeof value === "object") value = JSON.stringify(value);
+  setLocalStorage(key, value) {
+    if (typeof value === "object") value = JSON.stringify(value);
     localStorage.setItem(key, value);
   }
-   /**
+  /**
    * récupère les éléments du local Storage
    *
-   * @param {string} 
-   * 
+   * @param {string}
+   *
    * @return  {string} retourne la valeur de ce que contient la clé du localStorge
    */
-  getLocalStorage(key){
-    if( typeof value === "object") return JSON.parse(localStorage.getItem(key));
+  getLocalStorage(key) {
+    if (typeof value === "object") return JSON.parse(localStorage.getItem(key));
     return localStorage.getItem(key);
   }
 
@@ -57,43 +57,38 @@ class DataManager{
    *
    * @return  {objet} reponse du serveur sous forme d'id
    */
-  sendData(prenom, nom, adresse, ville, mail,products){
-
+  async sendData(prenom, nom, adresse, ville, mail, products) {
     // const headers = new Headers();
     // headers.append('Content-Type', 'application/json');
 
     const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json",
     };
 
     const body = JSON.stringify({
-        "contact": {
-          "firstName": prenom,
-          "lastName": nom,
-          "address": adresse,
-          "city": ville,
-          "email": mail
-        },
-        "products": products
+      contact: {
+        firstName: prenom,
+        lastName: nom,
+        address: adresse,
+        city: ville,
+        email: mail,
+      },
+      products: products,
     });
 
     const init = {
-      method : 'POST',
+      method: "POST",
       headers,
-      body
+      body,
     };
 
-    fetch(this.src+"/order", init)
-    .then((response) =>{
-      return response.json();
-    })
-    .then((text) =>{
-      console.log("---->",text)
+    try {
+      const response = await fetch(this.src + "/order", init);
+      const text = await response.json();
       return text;
-    })
-    .catch((e) =>{
-      console.error("/!\\ "+e);
-    });
+    } catch (e) {
+      console.error("/!\\ " + e);
+    }
   }
 }

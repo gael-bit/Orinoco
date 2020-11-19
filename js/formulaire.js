@@ -89,7 +89,6 @@ class Formulaire{
 		
     const result = await orinoco.dataManager.sendData(prenom, nom, adresse, ville, mail, products);
     orinoco.panier.closeModal();
-    console.log("--++",result)
     changePage("confirmation", result);
   }
 }
