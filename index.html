@@ -1,78 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/all.css" />
-    <link rel="stylesheet" href="css/commun.css" />
-    <link rel="stylesheet" href="css/page.css" />
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+		<link rel="stylesheet" href="css/all.css" />
+		<link rel="stylesheet" href="css/commun.css"/>
+		<link rel="stylesheet" href="css/page.css"/>
 
-    <meta name="viewport" content="width=device-width" />
-    <meta
-      name="description"
-      content="Bienvenue chez Orinoco!! Venez, entrez!!"
-    />
-    <title>Orinoco</title>
+		<meta name="viewport" content="width=device-width"/>
+		<meta name="description" content="Bienvenue chez Orinoco!! Venez, entrez!!"/>
+		<title>Orinoco</title>
 
-    <script src="js/dataManager.js"></script>
-    <script src="js/card.js"></script>
-    <script src="js/home.js"></script>
-    <script src="js/panier.js"></script>
-    <script src="js/pageProduit.js"></script>
-    <script src="js/pageConfirmation.js"></script>
-    <script src="js/formulaire.js"></script>
-    <script src="js/index.js"></script>
+		<script src="js/dataManager.js"></script>
+		<script src="js/card.js"></script>
+		<script src="js/home.js"></script>
+		<script src="js/panier.js"></script>
+		<script src="js/pageProduit.js"></script>
+		<script src="js/formulaire.js"></script>
+		<script src="js/pageConfirmation.js"></script>
+		<script src="js/index.js" defer></script>
 
-    <style>
-      nav .mouse,
-      nav .shown {
-        display: none;
-      }
-      nav .minimized {
-        font-size: 3rem;
-      }
+	</head>
 
-      @media screen AND (min-width:1024px){
-        nav .mouse{
-          display: flex;
-        }
-        nav .touch{
-          display: none;
-        }
-      }
-    </style>
+	<body>
+		<header>
+			<h1  onclick="changePage('home')">Orinoco</h1>
+			<nav>
+				<div class="acceuil" onclick="changePage('index')">Acceuil</div>
+				<div class="produit" onclick="changePage('produit')">Produit</div>
+			</nav>
+		</header>
+		<main id ="main">
 
-    <script>
-      function showNav(){
-        const target = document.querySelector(".shown");
-        const state = target.style.display;
-        target.style.display = state === "block" ? "none" : "block";
-      }
-    </script>
-  </head>
-
-  <body onload="initPage()">
-    <header>
-      <h1 onclick="changePage('home')">Orinoco</h1>
-      <nav>
-        <div class="mouse">
-          <div class="acceuil" onclick="changePage('home')">Acceuil</div>
-          <div class="produit" onclick="changePage('produit')">Produit</div>
-        </div>
-        <div class="touch">
-          <div class="minimized" onclick="showNav()">=</div>
-          <div class="shown">
-            <div class="acceuil" onclick="changePage('home')">Acceuil</div>
-            <div class="produit" onclick="changePage('produit')">Produit</div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main id="main"></main>
-  </body>
+		</main>
+	</body>
 </html>
