@@ -1,16 +1,11 @@
-.champ_produit, card{
-	background-color: #8b1573;
-	margin-left: 12%;
-	margin-right: 12%;
+ card{
+	background-color: #f3e9f1;
+	 margin-left: 12%; 
+	 margin-right: 12%; 
 	margin-bottom: 4%;
 	box-shadow: 0px 0px 18px #BDBDBD;
-	display : flex;
+  display : flex;
 }
-/*main{
-  max-width: 100%;
-  justify-content: space-evenly;
-  padding-top: 2rem;
-}*/
 
 
 modal {
@@ -33,3 +28,172 @@ modalcontent {
   overflow-y: auto;
   display: block;
 }
+
+h1{
+  font-size: 5em;
+}
+
+total{
+  color : green;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+price{
+  font-size: 1.5em;
+}
+
+article{
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+form{
+  margin-top: 2%;
+  text-align: center;
+}
+
+@media screen AND (min-width: 300px) AND (max-width: 360px){
+  img{
+    height: 162px;
+  }
+
+  card{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+    padding-bottom: 6%;
+  }
+
+  h1{
+		font-size: 3em;
+	}
+
+  h2, p{
+    text-align: center;
+  }
+
+  price{
+    padding-left: 45%;
+  }
+
+  button{
+    margin-left: 35%;
+  }
+
+  panier{
+    margin-left: 40%;
+  }
+}
+
+@media screen AND (min-width: 360px) AND (max-width: 400px){
+
+ img{
+    height: 190px;
+  }
+
+   card{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+    padding-bottom: 6%;
+  }
+
+  h1{
+		font-size: 4em;
+	}
+
+  h2, p{
+    text-align: center;
+  }
+
+  price{
+    padding-left: 45%;
+  }
+
+  button{
+    margin-left: 35%;
+  }
+
+  panier{
+    margin-left: 40%;
+  }
+
+}
+@media screen AND (min-width: 400px) AND (max-width: 450px){
+
+    img{
+      height: 210px;
+    }
+  
+      card{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8%;
+      padding-bottom: 6%;
+    }
+
+    h1{
+      font-size: 4em;
+    }
+  
+    h2, p{
+      text-align: center;
+    }
+  
+    price{
+      padding-left: 45%;
+    }
+  
+    button{
+      margin-left: 35%;
+    }
+    panier{
+      margin-left: 40%;
+    }
+ 
+ }
+
+ @media screen AND (min-width: 450px) AND (max-width: 650px){
+    img{
+      height: 287px;
+    }
+
+    card{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8%;
+      padding-bottom: 6%;
+    }
+
+    h1{
+    font-size: 4.7em;
+  }
+
+    h2, p{
+      text-align: center;
+    }
+
+    price{
+      padding-left: 48%;
+    }
+
+    button{
+      margin-left: 41%;
+    }
+    panier{
+    margin-left: 40%;
+  }
+}
+
+ @media screen AND (min-width: 650px) AND (max-width: 700px){
+   img{
+     height: 210px;
+   }
+   card{
+    height: 210px;
+    margin-left: 10%;
+    margin-right: 10%;
+   }
+ }
